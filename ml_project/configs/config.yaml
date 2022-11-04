@@ -1,0 +1,18 @@
+data_params:
+  data_path: data/heart_cleveland_upload.csv
+  numeric_features:
+    - age
+    - trestbps
+    - chol
+    - thalach
+    - oldpeak
+  categorical_features:
+    - sex
+    - cp
+    - fbs
+    - restecg
+    - exang
+    - slope
+    - ca
+    - thal
+  target: condition
