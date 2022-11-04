@@ -1,5 +1,5 @@
 data_params:
-  data_path: data/heart_cleveland_upload.csv
+  input_data_path: data/heart_cleveland_upload.csv
   numeric_features:
     - age
     - trestbps
