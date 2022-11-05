@@ -2,9 +2,8 @@ from typing import Tuple
 
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
-
 from params.params import SplittingParams
+from sklearn.model_selection import train_test_split
 
 
 def read_data(path: str) -> pd.DataFrame:
@@ -23,8 +22,9 @@ def split_data(X: np.ndarray,
                y: np.ndarray,
                params: SplittingParams) -> Tuple[np.ndarray, ...]:
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, train_size=params.train_size, random_state=params.random_state
+        X,
+        y,
+        train_size=params.train_size,
+        random_state=params.random_state
     )
-
-    X_test.to_csv(params.path_to_test_data)
     return X_train, X_test, y_train, y_test

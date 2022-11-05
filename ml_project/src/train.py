@@ -4,18 +4,14 @@ import hydra
 import mlflow
 import numpy as np
 import pandas as pd
+from data.make_dataset import extract_target, read_data, split_data
+from features.build_features import create_transformer, process_features
 from hydra.core.config_store import ConfigStore
 from hydra.utils import instantiate
-
-from data.make_dataset import extract_target, read_data, split_data
-from params.params import TrainConfig
-from features.build_features import create_transformer, process_features
 from logger.logger import logger
-from models.model import (predict_model,
-                          train_model,
-                          save_model,
-                          calculate_metrics)
-
+from models.model import (calculate_metrics, predict_model, save_model,
+                          train_model)
+from params.params import TrainConfig
 
 cs = ConfigStore.instance()
 cs.store(name='train', node=TrainConfig)

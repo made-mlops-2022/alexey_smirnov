@@ -1,11 +1,10 @@
 import numpy as np
 import pandas as pd
+from params.params import FeatureParams
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-
-from params.params import FeatureParams
 
 
 def create_categorical_pipeline() -> Pipeline:

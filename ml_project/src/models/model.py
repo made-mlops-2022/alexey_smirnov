@@ -1,12 +1,11 @@
 import pickle
-from typing import Tuple, Dict
+from typing import Dict, Tuple
 
 import numpy as np
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import recall_score
-
 from params.params import TrainingParams
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import recall_score
+from sklearn.model_selection import GridSearchCV
 
 
 def train_model(X_train: np.ndarray,
