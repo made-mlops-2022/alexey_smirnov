@@ -5,7 +5,7 @@ import mlflow
 import numpy as np
 import pandas as pd
 from data.make_dataset import extract_target, read_data, split_data
-from features.build_features import create_transformer, process_features
+from features.build_features import create_transformer, preprocess_features
 from hydra.core.config_store import ConfigStore
 from hydra.utils import instantiate
 from logger.logger import logger
@@ -28,18 +28,20 @@ def run_train_pipeline(params: TrainConfig):
 
     X, y = extract_target(data, params.feature_params.target)
 
-    X_train, X_test, y_train, y_test = split_data(X,
-                                                  y,
-                                                  params.splitting_params)
     logger.info('Split data to train and test...')
+    X_train, X_test, y_train, y_test = split_data(
+        X,
+        y,
+        params.splitting_params
+    )
     X_test.to_csv(params.path_to_test_data)
     logger.info(f'Saved test data to {params.path_to_test_data}')
 
     logger.info('Preprocessing features... ')
     transformer = create_transformer(params.feature_params)
     transformer.fit(X_train)
-    X_train = process_features(transformer,
-                               X_train)
+    X_train = preprocess_features(transformer,
+                                  X_train)
     df_train_processed = np.concatenate([X_train,
                                          y_train[..., np.newaxis]],
                                         axis=-1)
@@ -56,10 +58,12 @@ def run_train_pipeline(params: TrainConfig):
     with mlflow.start_run(run_name=params.mlflow_run_name):
         logger.info('Start training model...')
         if params.model.train_params.grid_search:
+            logger.info('Using grid search for best model hyperparameters...')
             model, bst_params, val_metrics = train_model(
                 X_train,
                 y_train,
-                params.model.train_params)
+                params.model.train_params
+            )
             logger.info(f'Best params are {bst_params}')
 
             for prm in bst_params:
@@ -77,14 +81,15 @@ def run_train_pipeline(params: TrainConfig):
         # calculating metrics
         logger.info('Calculating metrics...')
         y_pred = predict_model(model,
-                               process_features(transformer,
-                                                X_test))
+                               preprocess_features(transformer,
+                                                   X_test))
         metrics = calculate_metrics(y_pred,
                                     y_test)
         for metric in metrics:
             mlflow.log_metric(metric,
                               metrics[metric])
-        logger.info(f'Metrics on test data {metrics}')
+        logger.info(f'Metrics on test data: {metrics}')
+
         with open(params.model.metric_json_path, 'w') as metric_file:
             if params.model.train_params.grid_search:
                 json.dump({**val_metrics, **metrics}, metric_file)
@@ -97,7 +102,8 @@ def run_train_pipeline(params: TrainConfig):
                         params.model.model_path)
         mlflow.sklearn.log_model(
             sk_model=model,
-            artifact_path="classification_model")
+            artifact_path="classification_model"
+        )
         logger.info('Successfully save model')
 
 

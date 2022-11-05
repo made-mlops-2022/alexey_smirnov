@@ -17,8 +17,8 @@ def create_numerical_pipeline() -> Pipeline:
                      ('scaler', StandardScaler())])
 
 
-def process_features(transformer: ColumnTransformer,
-                     data: pd.DataFrame) -> np.ndarray:
+def preprocess_features(transformer: ColumnTransformer,
+                        data: pd.DataFrame) -> np.ndarray:
     return transformer.transform(data)
 
 

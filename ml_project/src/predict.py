@@ -4,7 +4,7 @@ import click
 import pandas as pd
 
 from data import read_data
-from features.build_features import process_features
+from features.build_features import preprocess_features
 from logger.logger import logger
 from models.model import predict_model
 
@@ -30,7 +30,7 @@ def run_predict_pipeline(model_path: str,
     logger.info('Transforming features... ')
     with open(transformer_path, 'rb') as f:
         transformer = pickle.load(f)
-    X = process_features(transformer, data)
+    X = preprocess_features(transformer, data)
     logger.info('Successfully transformed features')
 
     logger.info('Making predictions... ')
