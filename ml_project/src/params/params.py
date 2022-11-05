@@ -18,7 +18,7 @@ class TrainingParams:
 class FeatureParams:
     categorical: List[str]
     numerical: List[str]
-    target_column: str
+    target: str
 
 
 @dataclass

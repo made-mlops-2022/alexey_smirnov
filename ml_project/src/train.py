@@ -26,7 +26,7 @@ def run_train_pipeline(params: TrainConfig):
     data = read_data(params.path_to_input_data)
     logger.info(f'Successfully read DataFrame, shape is {data.shape}')
 
-    X, y = extract_target(data, params.feature_params.target_column)
+    X, y = extract_target(data, params.feature_params.target)
 
     X_train, X_test, y_train, y_test = split_data(X,
                                                   y,
