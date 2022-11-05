@@ -19,10 +19,12 @@ def extract_target(data: pd.DataFrame,
     return X, y
 
 
-def split_train_test_data(X: np.ndarray,
-                          y: np.ndarray,
-                          params: SplittingParams) -> Tuple[np.ndarray, ...]:
+def split_data(X: np.ndarray,
+               y: np.ndarray,
+               params: SplittingParams) -> Tuple[np.ndarray, ...]:
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, train_size=params.train_size, random_state=params.random_state
     )
+
+    X_test.to_csv(params.path_to_test_data)
     return X_train, X_test, y_train, y_test

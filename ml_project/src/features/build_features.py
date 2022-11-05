@@ -5,41 +5,35 @@ from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
-from params.params import FeatureParams, FeatureProcessingParams
+from params.params import FeatureParams
 
 
-def create_categorical_pipeline(to_process=True) -> Pipeline:
-    if to_process:
-        return Pipeline([('impute', SimpleImputer(strategy='most_frequent')),
-                         ('ohe', OneHotEncoder())])
-    else:
-        return Pipeline([('impute', SimpleImputer(strategy='most_frequent'))])
+def create_categorical_pipeline() -> Pipeline:
+    return Pipeline([('impute', SimpleImputer(strategy='most_frequent')),
+                     ('ohe', OneHotEncoder())])
 
 
-def create_numerical_pipeline(to_process=True) -> Pipeline:
-    if to_process:
-        return Pipeline([('impute', SimpleImputer(strategy='mean')),
-                         ('scaler', StandardScaler())])
-    else:
-        return Pipeline([('impute', SimpleImputer(strategy='mean'))])
+def create_numerical_pipeline() -> Pipeline:
+    return Pipeline([('impute', SimpleImputer(strategy='mean')),
+                     ('scaler', StandardScaler())])
 
 
-def process_features(transformer: ColumnTransformer, data: pd.DataFrame) -> np.ndarray:
+def process_features(transformer: ColumnTransformer,
+                     data: pd.DataFrame) -> np.ndarray:
     return transformer.transform(data)
 
 
-def create_transformer(params: FeatureParams,
-                       process_params: FeatureProcessingParams) -> ColumnTransformer:
+def create_transformer(params: FeatureParams) -> ColumnTransformer:
     transformer = ColumnTransformer(
         [
             (
                 'categorical_pipeline',
-                create_categorical_pipeline(process_params.process_categorical),
+                create_categorical_pipeline(),
                 params.categorical,
             ),
             (
                 'numerical_pipeline',
-                create_numerical_pipeline(process_params.process_numerical),
+                create_numerical_pipeline(),
                 params.numerical,
             ),
         ]

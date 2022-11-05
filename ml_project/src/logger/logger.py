@@ -1,12 +1,36 @@
 import logging
 
+LOGGING_CONFIG = {
+    'version': 1,
+    'disable_existing_loggers': False,
 
-class LoggerFormating(logging.Formatter):
-    format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s (%(filename)s:%(lineno)d)'
+    'formatters': {
+        'default_formatter': {
+            'format': '[%(levelname)s:%(asctime)s] %(message)s'
+        },
+    },
 
-    FORMATS = {logging.INFO: format}
+    'handlers': {
+        'file_handler': {
+            'class': 'logging.FileHandler',
+            'formatter': 'default_formatter',
+            'filename': 'log.log'
+        },
+        'stream_handler': {
+            'level': 'INFO',
+            'formatter': 'processed',
+            'class': 'logging.StreamHandler',
+        },
+    },
 
-    def format(self, record):
-        log_fmt = self.FORMATS.get(record.levelno)
-        formatter = logging.Formatter(log_fmt)
-        return formatter.format(record)
+    'loggers': {
+        'logger': {
+            'handlers': ['stream_handler', 'file_handler'],
+            'level': 'INFO',
+            'propagate': True
+        }
+    }
+}
+
+logging.config.dictConfig(LOGGING_CONFIG)
+logger = logging.getLogger('logger')

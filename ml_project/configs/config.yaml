@@ -1,18 +1,38 @@
-data_params:
-  input_data_path: data/heart_cleveland_upload.csv
-  numeric_features:
-    - age
-    - trestbps
-    - chol
-    - thalach
-    - oldpeak
-  categorical_features:
-    - sex
-    - cp
-    - fbs
-    - restecg
-    - exang
-    - slope
-    - ca
-    - thal
-  target: condition
+_target_: params.TrainConfig
+
+model_params:
+  _target_: params.ModelConfig
+  path_to_output_model: 'models/output_model.pkl'
+  path_to_model_metric: 'models/metrics/output_model_metrics.json'
+  path_to_processed_data: 'data/processed/processed_data.csv'
+  path_to_transformer_model: 'models/transformer_model.pkl'
+
+path_to_input_data: 'data/raw/heart_cleveland_upload.csv'
+path_to_test_data: 'data/test/heart_cleveland_upload_test.csv'
+
+splitting_params:
+  _target_: params.SplittingParams
+  train_size: 0.8
+  random_state: 42
+
+feature_params:
+  _target_: params.FeatureParams
+  numerical:
+    - 'age'
+    - 'trestbps'
+    - 'chol'
+    - 'thalach'
+    - 'oldpeak'
+  categorical:
+    - 'sex'
+    - 'cp'
+    - 'fbs'
+    - 'restecg'
+    - 'exang'
+    - 'slope'
+    - 'ca'
+    - 'thal'
+  target: 'condition'
+
+mlflow_run_name: 'classification'
+mlflow_url: 'http://localhost:5000'
