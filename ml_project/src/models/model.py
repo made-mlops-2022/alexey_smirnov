@@ -40,6 +40,7 @@ def calculate_metrics(y_pred: np.ndarray,
     return {'recall': recall_score(y_pred, y_target)}
 
 
-def save_model(model: object, path_to_model: str):
+def serialize_model(model: object,
+                    path_to_model: str):
     with open(path_to_model, 'wb') as f:
         pickle.dump(model, f)
