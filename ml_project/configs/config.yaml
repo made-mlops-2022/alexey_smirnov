@@ -5,7 +5,7 @@ model_params:
   path_to_output_model: 'models/output_model.pkl'
   path_to_model_metric: 'models/metrics/output_model_metrics.json'
   path_to_processed_data: 'data/processed/processed_data.csv'
-  path_to_transformer_model: 'models/transformer_model.pkl'
+  path_to_transformer_model: 'models/transformer.pkl'
 
 path_to_input_data: 'data/raw/heart_cleveland_upload.csv'
 path_to_test_data: 'data/test/heart_cleveland_upload_test.csv'
