@@ -24,7 +24,7 @@ def split_data(X: np.ndarray,
     X_train, X_test, y_train, y_test = train_test_split(
         X,
         y,
-        train_size=params.train_size,
+        test_size=(1 - params.train_size),
         random_state=params.random_state
     )
     return X_train, X_test, y_train, y_test

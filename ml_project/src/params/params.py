@@ -5,12 +5,12 @@ from typing import List
 @dataclass
 class SplittingParams:
     train_size: float = field(default=0.8)
-    random_state: int = field(default=42)
+    random_state: int = field(default=52)
 
 
 @dataclass
 class TrainingParams:
-    random_state: int = field(default=42)
+    random_state: int = field(default=52)
     grid_search: bool = field(default=True)
 
 
