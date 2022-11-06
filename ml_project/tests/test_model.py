@@ -10,12 +10,14 @@ from sklearn.utils.validation import check_is_fitted
 from src.params import TrainingParams
 from src.models.model import serialize_model, predict_model, calculate_metrics, train_model
 from test_feature_data import TestFeaturesModule
+from generate_fake_data import generate_fake_data
 
 
 class TestModelModule(TestFeaturesModule):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        generate_fake_data()
         tp = TrainingParams()
         self.model, self.best_params, self.best_score = \
             train_model(self.X_train, self.y_train, tp)

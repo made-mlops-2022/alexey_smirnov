@@ -13,6 +13,7 @@ sys.path.append(SOURCE_PATH)
 from src.params import FeatureParams
 from src.features.build_features import create_transformer, preprocess_features
 from test_make_dataset import TestDataModule
+from generate_fake_data import generate_fake_data
 
 
 class TestFeaturesModule(TestDataModule):
@@ -20,6 +21,8 @@ class TestFeaturesModule(TestDataModule):
         super().__init__(*args, **kwargs)
         self.categorical = ['sex', 'cp', 'fbs', 'restecg', 'slope', 'exang', 'ca', 'thal']
         self.numerical = ['age', 'trestbps', 'chol', 'thalach', 'slope']
+
+        generate_fake_data()
 
         feature_prms = FeatureParams(categorical=self.categorical,
                                      numerical=self.numerical,

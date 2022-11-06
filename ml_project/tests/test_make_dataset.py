@@ -5,6 +5,7 @@ import pandas as pd
 
 from src.data.make_dataset import extract_target, read_data, split_data
 from src.params import SplittingParams
+from generate_fake_data import generate_fake_data
 
 
 class TestDataModule(unittest.TestCase):
@@ -13,6 +14,7 @@ class TestDataModule(unittest.TestCase):
         self.input_file = 'tests/fake_data/fake_data.csv'
         self.target_column = 'condition'
 
+        generate_fake_data()
         self.data = read_data(self.input_file)
         self.X, self.y = extract_target(self.data, self.target_column)
 
