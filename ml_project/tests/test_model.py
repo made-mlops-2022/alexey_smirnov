@@ -1,18 +1,11 @@
 import os
 import pickle
-import sys
 import unittest
 
 import numpy as np
 from sklearn.exceptions import NotFittedError
 from sklearn.linear_model import LogisticRegression
 from sklearn.utils.validation import check_is_fitted
-
-PROJECT_PATH = os.getcwd()
-SOURCE_PATH = os.path.join(
-    PROJECT_PATH, 'src'
-)
-sys.path.append(SOURCE_PATH)
 
 from src.params import TrainingParams
 from src.models.model import serialize_model, predict_model, calculate_metrics, train_model
