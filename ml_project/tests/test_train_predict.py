@@ -18,7 +18,7 @@ sys.path.append(SOURCE_PATH)
 
 
 class TestTrainPredict(unittest.TestCase):
-    def test_train(self):
+    def test_train_predict(self):
 
         with initialize(version_base=None, config_path='../configs'):
             params = compose(config_name="config")
@@ -39,10 +39,6 @@ class TestTrainPredict(unittest.TestCase):
             model = pickle.load(f)
         self.assertIsInstance(model, ColumnTransformer)
 
-    def test_predict(self):
-        with initialize(version_base=None, config_path='../configs'):
-            params = compose(config_name="config")
-        params = instantiate(params, _convert_='partial')
         run_predict_pipeline.callback(model_path=params.model.model_path,
                                       transformer_path=params.model.transformer_model_path,
                                       test_data_path=params.test_data_path,
