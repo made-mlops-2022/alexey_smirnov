@@ -36,5 +36,6 @@ jobs:
       - name: Run tests ans mlflow
         run: |
           cd ml_project
+          dvc pull
           mlflow server --backend-store-uri sqlite:///:memory --default-artifact-root ./mlruns &
           python -m unittest discover tests
