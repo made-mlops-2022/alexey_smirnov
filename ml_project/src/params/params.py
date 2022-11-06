@@ -35,8 +35,8 @@ class ModelConfig:
 class TrainConfig:
     model: ModelConfig
 
-    path_to_input_data: str
-    path_to_test_data: str
+    input_data_path: str
+    test_data_path: str
 
     splitting_params: SplittingParams
     feature_params: FeatureParams

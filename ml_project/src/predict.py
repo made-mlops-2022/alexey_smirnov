@@ -2,7 +2,7 @@ import pickle
 
 import click
 import pandas as pd
-from data import read_data
+from data.make_dataset import read_data
 from features.build_features import preprocess_features
 from logger.logger import logger
 from models.model import predict_model

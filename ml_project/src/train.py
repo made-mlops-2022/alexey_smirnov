@@ -4,7 +4,6 @@ import hydra
 import mlflow
 import numpy as np
 import pandas as pd
-from sklearn.compose import ColumnTransformer
 from data.make_dataset import extract_target, read_data, split_data
 from features.build_features import create_transformer, preprocess_features
 from hydra.core.config_store import ConfigStore
@@ -24,7 +23,7 @@ def run_train_pipeline(params: TrainConfig):
     # preprocessing pipeline
     params = instantiate(params, _convert_='partial')
     logger.info(f'Starting train pipeline with params {params}')
-    data = read_data(params.path_to_input_data)
+    data = read_data(params.input_data_path)
     logger.info(f'Successfully read DataFrame, shape is {data.shape}')
 
     X, y = extract_target(data, params.feature_params.target)
@@ -37,8 +36,8 @@ def run_train_pipeline(params: TrainConfig):
                   y_train.shape is {y_train.shape}')
     logger.info(f'X_test.shape is {X_train.shape}, \
                   y_test.shape is {y_train.shape}')
-    X_test.to_csv(params.path_to_test_data)
-    logger.info(f'Saved test data to {params.path_to_test_data}')
+    X_test.to_csv(params.test_data_path)
+    logger.info(f'Saved test data to {params.test_data_path}')
 
     logger.info('Preprocessing features... ')
     transformer = create_transformer(params.feature_params)

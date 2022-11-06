@@ -18,7 +18,7 @@ LOGGING_CONFIG = {
         },
         'stream_handler': {
             'level': 'INFO',
-            'formatter': 'processed',
+            'formatter': 'default_formatter',
             'class': 'logging.StreamHandler',
         },
     },
