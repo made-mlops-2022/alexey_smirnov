@@ -1,20 +1,10 @@
-import os
-import sys
 import unittest
 
 import numpy as np
 import pandas as pd
 
-PROJECT_PATH = os.getcwd()
-SOURCE_PATH = os.path.join(
-    PROJECT_PATH, 'src'
-)
-sys.path.append(SOURCE_PATH)
-
 from src.data.make_dataset import extract_target, read_data, split_data
 from src.params import SplittingParams
-
-unittest.TestLoader.sortTestMethodsUsing = None
 
 
 class TestDataModule(unittest.TestCase):
@@ -41,21 +31,16 @@ class TestDataModule(unittest.TestCase):
         self.assertEqual(self.y.shape, (self.data.shape[0], ))
 
     def test_split_data(self):
-        self.X, self.y = extract_target(self.data, self.target_column)
 
         self.assertIsInstance(self.X_train, pd.DataFrame)
         self.assertIsInstance(self.y_train, np.ndarray)
         self.assertIsInstance(self.X_test, pd.DataFrame)
         self.assertIsInstance(self.y_test, np.ndarray)
 
-        self.assertEqual(self.X_train.shape,
-                         (self.data.shape[0] * self.split_params.train_size, 13))
-        self.assertEqual(self.y_train.shape,
-                         (self.data.shape[0] * self.split_params.train_size, ))
-        self.assertEqual(self.X_test.shape,
-                         (self.data.shape[0] * (1 - self.split_params.train_size), 13))
-        self.assertEqual(self.y_test.shape,
-                         (self.data.shape[0] * (1 - self.split_params.train_size), ))
+        self.assertEqual(self.X_train.shape, (800, 13))
+        self.assertEqual(self.y_train.shape, (800, ))
+        self.assertEqual(self.X_test.shape, (200, 13))
+        self.assertEqual(self.y_test.shape, (200, ))
 
 
 if __name__ == '__main__':

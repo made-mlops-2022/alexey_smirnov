@@ -37,9 +37,9 @@ class TestFeaturesModule(TestDataModule):
 
     def test_preprocess_features(self):
         self.assertEqual(self.X_train.shape,
-                         (self.data.shape[0] * self.split_params.train_size, 28))
+                         (800, 28))
         self.assertEqual(self.X_test.shape,
-                         (self.data.shape[0] * (1 - self.split_params.train_size), 28))
+                         (200, 28))
 
         self.assertIsInstance(self.X_train, np.ndarray)
         self.assertIsInstance(self.X_test, np.ndarray)
@@ -47,10 +47,10 @@ class TestFeaturesModule(TestDataModule):
     def test_read_data(self):
         pass
 
-    def test_extract_target_variable(self):
+    def test_extract_target(self):
         pass
 
-    def test_split_train_test_data(self):
+    def test_split_data(self):
         pass
 
 

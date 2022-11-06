@@ -5,7 +5,7 @@ import unittest
 
 import numpy as np
 from sklearn.exceptions import NotFittedError
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.utils.validation import check_is_fitted
 
 PROJECT_PATH = os.getcwd()
@@ -43,12 +43,12 @@ class TestModelModule(TestFeaturesModule):
         self.assertTrue(os.path.exists(pth))
         with open(pth, 'rb') as f:
             model = pickle.load(f)
-        self.assertIsInstance(model, KNeighborsClassifier)
+        self.assertIsInstance(model, LogisticRegression)
         os.remove(pth)
 
     def test_predict_model(self):
         self.assertIsInstance(self.y_pred, np.ndarray)
-        self.assertEqual(self.y_pred.shape, (40,))
+        self.assertEqual(self.y_pred.shape, (200, ))
         self.assertEqual(list(np.unique(self.y_pred)), [0, 1])
 
     def test_calculate_metrics(self):

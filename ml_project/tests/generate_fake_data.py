@@ -8,3 +8,5 @@ def generate_fake_data():
     model.fit(data)
     fake_data = model.sample(1000)
     fake_data.to_csv('fake_data/fake_data.csv', index=False)
+
+generate_fake_data()
