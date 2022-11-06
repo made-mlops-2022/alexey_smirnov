@@ -92,3 +92,17 @@ target/
 
 # mlflow
 :memory
+
+# pickle
+*.pickle
+*.pkl
+
+*.csv
+
+ml_projects/mlrun/
+
+ml_project/models/metrics/output_model_metrics.json
+ml_project/outputs
+*.log
+
+
