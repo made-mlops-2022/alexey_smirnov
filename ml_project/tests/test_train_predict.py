@@ -1,7 +1,5 @@
 import os
-import logging
 import pickle
-import shutil
 import sys
 import unittest
 
@@ -18,16 +16,12 @@ SOURCE_PATH = os.path.join(
 )
 sys.path.append(SOURCE_PATH)
 
-logging.disable(logging.CRITICAL)
-
 
 class TestTrainPredict(unittest.TestCase):
     def test_train(self):
-        os.makedirs('tests/models', exist_ok=True)
 
         with initialize(version_base=None, config_path='../configs'):
             params = compose(config_name="config")
-        # params = instantiate(params, _convert_='partial')
 
         run_train_pipeline(params)
 
@@ -53,8 +47,7 @@ class TestTrainPredict(unittest.TestCase):
                                       transformer_path=params.model.transformer_model_path,
                                       test_data_path=params.test_data_path,
                                       predictions_path='models/prediction.csv')
-        self.assertTrue(os.path.exists('tests/models/prediction.csv'))
-        shutil.rmtree('tests/models')
+        self.assertTrue(os.path.exists('models/prediction.csv'))
 
 
 if __name__ == '__main__':

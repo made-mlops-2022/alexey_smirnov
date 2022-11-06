@@ -28,7 +28,7 @@ class TestModelModule(TestFeaturesModule):
         try:
             check_is_fitted(self.model)
         except NotFittedError:
-            self.fail('Model did not fit')
+            self.fail('Model not fitted')
         self.assertIsInstance(self.best_params, dict)
         self.assertGreaterEqual(self.best_score['val_recall'], 0)
 
