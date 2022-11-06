@@ -30,11 +30,9 @@ def run_train_pipeline(params: TrainConfig):
     X, y = extract_target(data, params.feature_params.target)
 
     logger.info('Spliting data to train and test...')
-    X_train, X_test, y_train, y_test = split_data(
-        X,
-        y,
-        params.splitting_params
-    )
+    X_train, X_test, y_train, y_test = split_data(X,
+                                                  y,
+                                                  params.splitting_params)
     logger.info(f'X_train.shape is {X_train.shape}, \
                   y_train.shape is {y_train.shape}')
     logger.info(f'X_test.shape is {X_train.shape}, \
