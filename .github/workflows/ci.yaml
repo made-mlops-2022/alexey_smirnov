@@ -37,4 +37,4 @@ jobs:
         run: |
           cd ml_project
           mlflow server --backend-store-uri sqlite:///:memory --default-artifact-root ./mlruns &
-          python -m unittest tests/test_train_predict_model.py
+          python -m unittest discover tests
