@@ -10,14 +10,14 @@ fi
 
 if [[ ! -f $MODEL_PATH ]]
 then
-    gdown https://drive.google.com/file/d/1dfo8_cH2ASH7hq1Xd20iysUwTP8G60oY/view?usp=sharing --output=$MODEL_PATH
+    gdown https://drive.google.com/file/d/1xPq7zv8cH0lVfKPOflhEYuoYGVU37yi-/view?usp=sharing --output=$MODEL_PATH
 else
     echo "model already exists"
 fi
 
 if [[ ! -f $TRANSFORMER_PATH ]]
 then
-    gdown https://drive.google.com/file/d/1uRnWyfKfa7ZfB53B1eFqyJF2zclBD5gO/view?usp=sharing --output=$TRANSFORMER_PATH
+    gdown https://drive.google.com/file/d/1Vsa6G9dqbUnZ6QPwU3bnQphot287-jxX/view?usp=sharing --output=$TRANSFORMER_PATH
 else 
     echo "transformer aldeady exists"
 fi
