@@ -1,6 +1,5 @@
 FROM python:3.9.12-slim
 
-#RUN apt-get update && apt install fastjar
 WORKDIR /online_inference
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt --no-cache-dir
