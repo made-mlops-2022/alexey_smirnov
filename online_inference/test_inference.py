@@ -1,10 +1,9 @@
 import json
 import logging
-
+import time
 from random import randint
 
 import requests
-import time
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)

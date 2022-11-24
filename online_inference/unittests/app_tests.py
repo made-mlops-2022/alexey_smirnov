@@ -1,7 +1,7 @@
 import json
+from random import randint
 
 import pytest
-from random import randint
 from fastapi.testclient import TestClient
 
 from app import app, load_model
