@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from fastapi_health import health
 
 from config import path_to_model, path_to_transformer
+from schemas import HeartDeasease
 
 app = FastAPI()
 
@@ -24,7 +25,7 @@ def load_model():
 
 
 @app.post('/predict')
-async def predict(data):
+async def predict(data: HeartDeasease):
     data_df = pd.DataFrame([data.dict()])
     X = transformer.transform(data_df)
     y = model.predict(X)
