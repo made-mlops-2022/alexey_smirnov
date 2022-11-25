@@ -29,8 +29,8 @@ async def predict(data: HeartDeasease):
     data_df = pd.DataFrame([data.dict()])
     X = transformer.transform(data_df)
     y = model.predict(X)
-    condition = 'healthy' if not y[0] else 'sick'
-    return {'condition': condition}
+    prediction = 'healthy' if not y[0] else 'sick'
+    return {'prediction': prediction}
 
 
 def check_ready():
