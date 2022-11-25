@@ -30,8 +30,8 @@ python3 -m pytest app_tests.py
 ```
 
 ### _Docker image size reducing_
-Replacing the base docker image from python:3.9.12 to python:3.9.12-slim
+Replacing the base docker image from `python:3.9.12` to `python:3.9.12-slim`
 helped reduce the size of the image by more than 2 times -
 https://tinyurl.com/tf7veaz8.
 
-I tried to use python:3.9-alpine, but it didn't work out
+I tried to use `python:3.9-alpine`, but it didn't work out
