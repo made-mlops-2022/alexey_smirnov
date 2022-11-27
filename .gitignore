@@ -106,3 +106,8 @@ ml_project/outputs
 *.log
 
 
+# Pyre type checker
+.pyre/
+
+*.pkl
+
